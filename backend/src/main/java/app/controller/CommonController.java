@@ -6,13 +6,14 @@ import app.service.DepartmentService;
 import app.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
-@RequestMapping("/api/common")
 public class CommonController {
 
     private final DepartmentService departmentService;
@@ -23,12 +24,22 @@ public class CommonController {
         this.userService = userService;
     }
 
-    @GetMapping("/departments")
+    @GetMapping({"/", "/api", "/api/health"})
+    public ResponseEntity<Map<String, Object>> health() {
+        Map<String, Object> response = new HashMap<>();
+        response.put("status", "UP");
+        response.put("service", "WorkFlowOS Backend API");
+        response.put("message", "Service is healthy and active");
+        response.put("timestamp", LocalDateTime.now().toString());
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping({"/api/common/departments", "/api/departments"})
     public ResponseEntity<List<DepartmentResponse>> getDepartments() {
         return ResponseEntity.ok(departmentService.getAllDepartments());
     }
 
-    @GetMapping("/users")
+    @GetMapping({"/api/common/users", "/api/users"})
     public ResponseEntity<List<UserResponse>> getActiveUsers() {
         return ResponseEntity.ok(userService.getActiveUsers());
     }

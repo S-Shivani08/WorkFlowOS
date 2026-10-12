@@ -14,7 +14,11 @@ Thumbs.db
 # Frontend build & dependencies
 frontend/node_modules/
 frontend/dist/
-frontend/dist-ssr/
+# Environment & secrets
+.env
+*.env
+.env.*
+!.env.example
 frontend/.env.local
 frontend/.env.*.local
 *.log
@@ -28,6 +32,8 @@ backend/.classpath
 backend/.project
 backend/.settings/
 
-# OS/Temporary
+# OS/Temporary & Database
 temp/
 tmp/
+*.mv.db
+*.trace.db

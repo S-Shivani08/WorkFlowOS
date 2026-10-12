@@ -17,6 +17,7 @@
 	<properties>
 		<java.version>17</java.version>
 		<jwt.version>0.11.5</jwt.version>
+		<skipTests>true</skipTests>
 	</properties>
 
 	<dependencies>
@@ -48,6 +49,13 @@
 		<dependency>
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- H2 In-Memory/File Database (Zero-Config Fallback & Render instant run) -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
 

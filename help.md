@@ -163,15 +163,18 @@ We recommend [Render](https://render.com) for hosting Java Spring Boot applicati
 - **Instance Type**: Free
 
 ### 3. Add Environment Variables
-Scroll to **Environment Variables** and add:
+Scroll to **Environment Variables** and add the exact variables below (**No changes required!**):
 
-| Key | Example Value | Notes |
+| Key | Exact Value | Notes |
 | :--- | :--- | :--- |
-| `SPRING_DATASOURCE_URL` | `jdbc:mysql://YOUR_DB_HOST:YOUR_DB_PORT/YOUR_DB_NAME?useSSL=true&allowPublicKeyRetrieval=true&serverTimezone=UTC` | Your cloud MySQL JDBC URL |
-| `SPRING_DATASOURCE_USERNAME` | `avnadmin` or `root` | Database username |
-| `SPRING_DATASOURCE_PASSWORD` | `your_secret_password` | Database password |
+| `PORT` | `8080` | Render port |
 | `JWT_SECRET` | `404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970` | 256-bit secure key |
-| `PORT` | `8080` | Server port |
+| `SPRING_DATASOURCE_URL` | `jdbc:h2:file:./workflowos_db;DB_CLOSE_DELAY=-1;MODE=MySQL;DATABASE_TO_LOWER=TRUE` | Embedded DB (zero setup needed) |
+| `SPRING_DATASOURCE_USERNAME` | `sa` | Default username |
+| `SPRING_DATASOURCE_PASSWORD` | *(leave empty)* | No password needed |
+| `SPRING_JPA_HIBERNATE_DDL_AUTO` | `update` | Auto-creates tables & seeds data |
+
+*(Note: If you later decide to use an external Cloud MySQL database like Aiven or Railway, you can simply change `SPRING_DATASOURCE_URL`, `SPRING_DATASOURCE_USERNAME`, and `SPRING_DATASOURCE_PASSWORD`).*
 
 ### 4. Deploy & Get Backend URL
 1. Click **Deploy Web Service**.

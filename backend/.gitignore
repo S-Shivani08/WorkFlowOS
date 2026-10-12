@@ -14,9 +14,18 @@ target/
 # Log files
 *.log
 
+# Database files
+*.mv.db
+*.trace.db
+
 # Virtual machines / Crash dumps
 crash*
 hs_err_pid*
+
+# Environment files
+.env
+*.env
+.env.*
 
 # IDE files
 .idea/

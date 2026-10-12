@@ -1,0 +1,33 @@
+# WorkFlowOS Global Git Ignore
+
+# IDE / Editor configuration
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+Thumbs.db
+
+# Frontend build & dependencies
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+frontend/.env.local
+frontend/.env.*.local
+*.log
+
+# Backend build & dependencies
+backend/target/
+backend/*.class
+backend/*.jar
+backend/*.war
+backend/.classpath
+backend/.project
+backend/.settings/
+
+# OS/Temporary
+temp/
+tmp/

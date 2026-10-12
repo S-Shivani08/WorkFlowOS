@@ -180,10 +180,24 @@ Scroll to **Environment Variables** and add the exact variables below (**No chan
 1. Click **Deploy Web Service**.
 2. Wait 2–3 minutes for the build and container startup to complete.
 3. Look at the logs. When you see `Started BackendApplication in X.XXX seconds`, your backend is live!
-4. Copy your live backend URL from the top of the Render page:
-   `https://workflowos-backend.onrender.com`
-5. Test it in your browser:
-   Visit `https://workflowos-backend.onrender.com/api/departments` — you should see a JSON array of departments!
+4. Copy your live backend URL from Render:
+   `https://workflowos-7lfd.onrender.com`
+
+> [!NOTE]
+> ### 💡 Why visiting `https://workflowos-7lfd.onrender.com` in a browser says "Access Denied"
+> **Your backend is 100% healthy, running, and working properly!**
+> 
+> Because WorkFlowOS backend is a **pure REST API** secured by Spring Security with JWT tokens:
+> 1. It is not an HTML website — it does not serve web pages at the root `/`.
+> 2. When you visit `https://workflowos-7lfd.onrender.com` directly in a browser, your browser sends a request with no JWT authorization header.
+> 3. Spring Security intercepts the unauthenticated request and correctly responds with **HTTP 403 Forbidden ("Access Denied")**. This is expected and standard security behavior for enterprise REST APIs.
+>
+> **Verification (Proof that it is live & healthy):**
+> Run this command in your PowerShell terminal to test the login endpoint:
+> ```powershell
+> curl.exe -X POST https://workflowos-7lfd.onrender.com/api/auth/login -H "Content-Type: application/json" -d '{\"email\":\"admin@workflowos.com\",\"password\":\"password123\"}'
+> ```
+> It returns `HTTP 200 OK` with your admin user profile and a signed JWT authentication token!
 
 ---
 
@@ -207,13 +221,9 @@ Scroll to **Environment Variables** and add the exact variables below (**No chan
 ### 3. Add Environment Variables
 Expand the **Environment Variables** section:
 
-| Key | Value | Example |
+| Key | Exact Value | Notes |
 | :--- | :--- | :--- |
-| `VITE_API_BASE_URL` | `https://YOUR_BACKEND_URL/api` | `https://workflowos-backend.onrender.com/api` |
-
-> [!IMPORTANT]
-> Make sure to append `/api` at the end of the URL! For example:
-> `https://workflowos-backend.onrender.com/api`
+| `VITE_API_BASE_URL` | `https://workflowos-7lfd.onrender.com/api` | Your live Render backend API URL (includes `/api`) |
 
 ### 4. Click Deploy
 1. Click **Deploy**.
